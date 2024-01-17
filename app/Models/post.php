@@ -6,11 +6,12 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class post extends Model
+class Post extends Model
 {
     use HasFactory;
+    protected $guarded=[];
 
-    public function Category(){
+    public function category(){
         return $this->belongsTo(category::class);
     }
 

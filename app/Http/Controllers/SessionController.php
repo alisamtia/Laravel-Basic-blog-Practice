@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Requests\sessionLogin;
+use App\Http\Requests\SessionLogin;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -12,10 +12,10 @@ class SessionController extends Controller
         return view("login");
     }
 
-    public function store(sessionLogin $credentials){
+    public function store(SessionLogin $credentials){
         $credentials=$credentials->validated();
         if(Auth::attempt(['email'=>$credentials['email'],"password"=>$credentials['password']])){
-            return redirect("/")->with(['success',"You are Successfully Logged in!"]);
+            return redirect("/dashboard")->with(['success',"You are Successfully Logged in!"]);
         }
         return back()->withErrors(['email'=>"Invalid Email or Password!"]);
     }

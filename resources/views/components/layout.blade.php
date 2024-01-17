@@ -4,6 +4,7 @@
 <head>
 <title>{{$name}}</title>
 <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 <header class="lg:flex border-b lg:py-5 justify-center">
     <div class="flex gap-10 lg:flex-row flex-col lg:w-2/3">
@@ -32,14 +33,24 @@
 <body>
 
 @if(session("success"))
-    <div class="fixed right-3 bottom-3 text-white py-2 px-5 rounded-xl z-30 bg-green-600">
+    <div id="success-msg" class="fixed right-3 bottom-3 text-white py-2 px-5 rounded-xl z-30 bg-green-600">
     {{session("success")}}
     </div>
+    <script>
+    setTimeout(function() {
+        $('#success-msg').fadeOut('slow');
+    }, 3000);
+    </script>
 @endif
 @if(session("error"))
-    <div class="fixed right-3 bottom-3 text-white py-2 px-5 rounded-xl z-30 bg-red-600">
+    <div id="error-msg" class="fixed right-3 bottom-3 text-white py-2 px-5 rounded-xl z-30 bg-red-600">
     {{session("error")}}
     </div>
+    <script>
+    setTimeout(function() {
+        $('#error-msg').fadeOut('slow');
+    }, 3000);
+    </script>
 @endif
 
     <div class="justify-center flex">

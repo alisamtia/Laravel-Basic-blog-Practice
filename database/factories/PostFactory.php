@@ -20,7 +20,7 @@ class PostFactory extends Factory
             "title"=> $this->faker->sentence,
             "user_id"=>rand(1,10),
             "category_id"=>rand(1,10),
-            "thumbnail"=>"/images/p-".rand(1,5).".jpg",
+            "thumbnail"=>"thumbnails/p-".rand(1,5).".jpg",
             "body"=> $this->faker->paragraph(20, true),
         ];
     }

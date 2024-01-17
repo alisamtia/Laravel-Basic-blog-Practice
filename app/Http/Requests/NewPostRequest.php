@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class RegisterRequest extends FormRequest
+class NewPostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,11 +23,10 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name"=>"required|min:5|max:30",
-            "username"=>"required|min:8|max:40|unique:users,username",
-            "avatar"=>"required",
-            "email"=>"required|email|unique:users,email",
-            "password"=>"required|min:8|max:225"
+            "title"=>"required|min:6",
+            "body"=>"required|min:200|max:50000",
+            "thumbnail"=>"required|image",
+            "category_id"=>["required",Rule::exists("categories","id")]
         ];
     }
 }

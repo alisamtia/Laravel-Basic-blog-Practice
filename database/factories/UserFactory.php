@@ -20,7 +20,7 @@ class UserFactory extends Factory
             "name"=> $this->faker->name,
             "email"=> $this->faker->safeEmail,
             "username"=> $this->faker->unique->userName,
-            "avatar"=> '/avatar/'.rand(1,10).".jpg",
+            "avatar"=> 'avatars/'.rand(1,10).".jpg",
             "password"=> bcrypt($this->faker->unique->password),
         ];
     }

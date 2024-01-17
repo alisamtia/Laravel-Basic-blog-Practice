@@ -1,16 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Requests\registerRequest;
+use App\Http\Requests\RegisterRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+
 class RegisterController extends Controller
 {
     public function index(){
         return view("register");
     }
-    public function store(registerRequest $request){
+    public function store(RegisterRequest $request){
         $data=$request->validated();
         $data['password']=bcrypt($data['password']);
         $data['avatar']=request()->file("avatar")->store("avatars");
