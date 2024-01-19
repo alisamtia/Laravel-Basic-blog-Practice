@@ -34,10 +34,10 @@
                         {{ ucwords($post->category->name) }}
                     </td>
                     <td class="px-6 py-4">
-                        <a href="/dashboard/post/{{$post->id}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <a href="/dashboard/posts/{{$post->id}}/edit" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                     </td>
                     <td class="px-6 py-4">
-                        <form method="POST" action="/dashboard/post/{{$post->id}}">
+                        <form method="POST" action="/dashboard/posts/{{$post->id}}">
                             @csrf
                             @method("DELETE")
                             <button action="submit" class="font-medium text-red-600 dark:text-blue-500 hover:underline">Delete</button>

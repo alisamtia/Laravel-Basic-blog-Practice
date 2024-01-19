@@ -17,7 +17,7 @@ class PostController extends Controller
         ]);
     }
 
-    public function new(){
+    public function create(){
         return view("admin.post.new",[
             "categories"=>Category::latest()->get()
         ]);

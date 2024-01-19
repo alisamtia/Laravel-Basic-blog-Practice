@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 
 class CategoriesController extends Controller
@@ -13,7 +14,7 @@ class CategoriesController extends Controller
         ]);
     }
 
-    public function new(){
+    public function create(){
         return view("admin.category.new");
     }
 
@@ -22,7 +23,7 @@ class CategoriesController extends Controller
         return redirect("/dashboard/categories")->with("success","Category Deleted Successfully!");
     }
 
-    public function create(categoryRequest $request){
+    public function store(CategoryRequest $request){
         $Categorydata=$request->validated();
         Category::create($Categorydata);
         return redirect("/dashboard/categories")->with("Category Created Successfully!");
@@ -34,7 +35,7 @@ class CategoriesController extends Controller
         ]);
     }
 
-    public function update(Category $category,categoryRequest $request){
+    public function update(Category $category,CategoryRequest $request){
         $Categorydata=$request->validated();
         $category->update($Categorydata);
         return redirect("/dashboard/categories")->with("Category Updated Successfully!");

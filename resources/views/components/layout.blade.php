@@ -23,7 +23,7 @@
                 </form>
             @endauth
             @guest
-                <a href="/login" class="{{Route::is('login') ? 'text-blue-500' : '' }} text-lg my-auto hover:text-blue-500">Login</a>
+                <a href="/login" class="{{Route::is('login.index') ? 'text-blue-500' : '' }} text-lg my-auto hover:text-blue-500">Login</a>
                 <a href="/register" class="{{Route::is('register') ? 'text-blue-500' : '' }} text-lg my-auto hover:text-blue-500">Register</a>
             @endguest
         </div>

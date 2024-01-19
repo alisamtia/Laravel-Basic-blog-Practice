@@ -1,5 +1,5 @@
 <x-adminLayout name="New Post">
-<form action="/dashboard/post/{{$post->id}}" class="flex flex-col gap-5" method="POST" enctype='multipart/form-data'>
+<form action="/dashboard/posts/{{$post->id}}" class="flex flex-col gap-5" method="POST" enctype='multipart/form-data'>
         @csrf
         @method("put")
         <x-form.text value="{{ old('title') ?? $post->title }}" name="title" type="text" />
