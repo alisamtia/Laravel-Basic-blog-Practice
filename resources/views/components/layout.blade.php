@@ -25,7 +25,7 @@
             @endauth
             @guest
                 <a href="{{route('login.index')}}" class="{{Route::is('login.index') ? 'text-blue-500' : '' }} text-lg my-auto hover:text-blue-500">Login</a>
-                <a href="{{route('register.index')}}" class="{{Route::is('register') ? 'text-blue-500' : '' }} text-lg my-auto hover:text-blue-500">Register</a>
+                <a href="{{route('register.index')}}" class="{{Route::is('register.index') ? 'text-blue-500' : '' }} text-lg my-auto hover:text-blue-500">Register</a>
             @endguest
         </div>
     </div>
