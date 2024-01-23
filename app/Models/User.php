@@ -11,7 +11,7 @@ class User extends Model implements AuthenticatableContract
     use HasFactory;
     use Authenticatable;
     protected $guarded=[];
-    public function post(){
+    public function posts(){
         return $this->hasMany(Post::class);
     }
 }
