@@ -5,27 +5,27 @@
 <title>{{$name}}</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-<link rel="icon" type="image/x-icon" href="/images/fav.png">
+<link rel="icon" type="image/x-icon" href="{{asset('/images/fav.png')}}">
 </head>
 <header class="lg:flex border-b lg:py-5 justify-center">
     <div class="flex gap-10 lg:flex-row flex-col lg:w-2/3">
         <div class="flex gap-10 mr-auto mx-auto">
-            <a href="/" class="{{Route::is('index') ? 'text-blue-500' : '' }} text-lg my-auto hover:text-blue-500">Home</a>
+            <a href="{{ route('index') }}" class="{{Route::is('index') ? 'text-blue-500' : '' }} text-lg my-auto hover:text-blue-500">Home</a>
             <a href="#" class="text-lg my-auto hover:text-blue-500">About</a>
             <a href="#" class="text-lg my-auto hover:text-blue-500">Contact</a>
         </div>
-        <img src="/images/logo.png" class="mx-auto" width="140">
+        <img src="{{asset('/images/logo.png')}}" class="mx-auto" width="140">
         <div class="flex gap-10 lg:ml-auto mx-auto">
             @auth
-                <a href="/dashboard" class="{{Route::is('dashboard') ? 'text-blue-500' : '' }} text-lg my-auto hover:text-blue-500">Dashboard</a>
-                <form class="my-auto" action="/logout" method="POST">
+                <a href="{{route('dashboard')}}" class="{{Route::is('dashboard') ? 'text-blue-500' : '' }} text-lg my-auto hover:text-blue-500">Dashboard</a>
+                <form class="my-auto" action="{{route('login.destroy')}}" method="POST">
                 @csrf
                 <button type="submit" class="text-lg my-auto hover:text-blue-500">Logout</button>
                 </form>
             @endauth
             @guest
-                <a href="/login" class="{{Route::is('login.index') ? 'text-blue-500' : '' }} text-lg my-auto hover:text-blue-500">Login</a>
-                <a href="/register" class="{{Route::is('register') ? 'text-blue-500' : '' }} text-lg my-auto hover:text-blue-500">Register</a>
+                <a href="{{route('login.index')}}" class="{{Route::is('login.index') ? 'text-blue-500' : '' }} text-lg my-auto hover:text-blue-500">Login</a>
+                <a href="{{route('register.index')}}" class="{{Route::is('register') ? 'text-blue-500' : '' }} text-lg my-auto hover:text-blue-500">Register</a>
             @endguest
         </div>
     </div>

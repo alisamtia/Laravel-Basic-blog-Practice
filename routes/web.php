@@ -13,14 +13,11 @@ use App\Http\Controllers\admin\CategoriesController;
 Route::get('/', [PostController::class,'index'])->name("index");
 Route::get('/post/{post}', [PostController::class,'show'])->name("post.show");
 
-Route::post('/logout', [SessionController::class,'destroy'])->middleware("auth");
+Route::post('/logout', [SessionController::class,'destroy'])->middleware("auth")->name("login.destroy");
 
 Route::middleware(['guest'])->group(function(){
-    Route::get('/login', [SessionController::class,'index'])->name("login");
-    Route::post('/login', [SessionController::class,'store'])->name("login.store");
-
-    Route::get('/register', [RegisterController::class,'index'])->name("register");
-    Route::post('/register', [RegisterController::class,'store'])->name("regster.store");
+    Route::resource('register',RegisterController::class)->only('index','store');
+    Route::resource('login',SessionController::class)->only('index','store');
 });
 
 Route::prefix("dashboard")->middleware("admin")->group(function () {
@@ -30,5 +27,4 @@ Route::prefix("dashboard")->middleware("admin")->group(function () {
         'categories'=>CategoriesController::class,
         "posts"=>AdminPost::class
     ]);
-
 });

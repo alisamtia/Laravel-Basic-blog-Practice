@@ -1,5 +1,5 @@
 <x-adminLayout name="New Post">
-<form action="/dashboard/posts" class="flex flex-col gap-5" method="POST" enctype='multipart/form-data'>
+<form action="{{ route('posts.store') }}" class="flex flex-col gap-5" method="POST" enctype='multipart/form-data'>
         @csrf
         <x-form.text name="title" type="text" />
         <x-form.textarea rows="10" name="body" />
