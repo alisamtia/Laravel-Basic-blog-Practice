@@ -20,13 +20,13 @@ class CategoriesController extends Controller
 
     public function destroy(Category $category){
         $category->delete();
-        return redirect("/dashboard/categories")->with("success","Category Deleted Successfully!");
+        return redirect()->route("categories.index")->with("success","Category Deleted Successfully!");
     }
 
     public function store(CategoryRequest $request){
         $Categorydata=$request->validated();
         Category::create($Categorydata);
-        return redirect("/dashboard/categories")->with("Category Created Successfully!");
+        return redirect()->route("categories.index")->with("Category Created Successfully!");
     }
 
     public function edit(Category $category){
@@ -38,6 +38,6 @@ class CategoriesController extends Controller
     public function update(Category $category,CategoryRequest $request){
         $Categorydata=$request->validated();
         $category->update($Categorydata);
-        return redirect("/dashboard/categories")->with("Category Updated Successfully!");
+        return redirect()->route("categories.index")->with("Category Updated Successfully!");
     }
 }

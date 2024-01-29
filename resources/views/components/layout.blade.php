@@ -3,7 +3,7 @@
 <html>
 <head>
 <title>{{$name}}</title>
-<script src="https://cdn.tailwindcss.com"></script>
+@vite('resources/css/app.css')
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <link rel="icon" type="image/x-icon" href="{{asset('/images/fav.png')}}">
 </head>

@@ -17,6 +17,6 @@ class RegisterController extends Controller
         $data['avatar']=request()->file("avatar")->store("avatars");
         $user=User::create($data);
         Auth::login($user);
-        return redirect("/")->with("success","User Created Successfully!");
+        return redirect()->route("index")->with("success","User Created Successfully!");
     }
 }

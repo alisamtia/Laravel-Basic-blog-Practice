@@ -15,13 +15,13 @@ class SessionController extends Controller
     public function store(SessionLogin $credentials){
         $credentials=$credentials->validated();
         if(Auth::attempt(['email'=>$credentials['email'],"password"=>$credentials['password']])){
-            return redirect("/dashboard")->with(['success',"You are Successfully Logged in!"]);
+            return redirect()->route("dashboard")->with('success',"You are Successfully Logged in!");
         }
         return back()->withErrors(['email'=>"Invalid Email or Password!"]);
     }
 
     public function destroy(){
         Auth::logout();
-        return redirect('/')->with(["success"=>"You are logged out Successfully!"]);
+        return redirect()->route("index")->with(["success"=>"You are logged out Successfully!"]);
     }
 }

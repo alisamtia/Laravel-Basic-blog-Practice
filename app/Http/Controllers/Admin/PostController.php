@@ -30,12 +30,12 @@ class PostController extends Controller
         $postdata['user_id']=request()->user()->id;
                 
         Post::create($postdata);
-        return redirect("/dashboard/posts")->with("success","Post Published Sucessfully");
+        return redirect()->route("posts.index")->with("success","Post Published Sucessfully");
     }
 
     public function destroy(Post $post){
         $post->delete();
-        return redirect("/dashboard/posts")->with("success","Post Deleted Successfully!");
+        return redirect()->route("posts.index")->with("success","Post Deleted Successfully!");
     }
 
     public function edit(Post $post){
@@ -51,6 +51,6 @@ class PostController extends Controller
             $Postdata['thumbnail']=request()->file("thumbnail")->store("thumbnails");
         }
         $post->update($Postdata);
-        return redirect("/dashboard/posts")->with("success","Post Updated Successfully!");
+        return redirect()->route("posts.index")->with("success","Post Updated Successfully!");
     }
 }
