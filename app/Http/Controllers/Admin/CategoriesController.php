@@ -24,8 +24,8 @@ class CategoriesController extends Controller
     }
 
     public function store(CategoryRequest $request){
-        $Categorydata=$request->validated();
-        Category::create($Categorydata);
+        $categoryData=$request->validated();
+        Category::create($categoryData);
         return redirect()->route("categories.index")->with("Category Created Successfully!");
     }
 
@@ -36,8 +36,8 @@ class CategoriesController extends Controller
     }
 
     public function update(Category $category,CategoryRequest $request){
-        $Categorydata=$request->validated();
-        $category->update($Categorydata);
+        $categoryData=$request->validated();
+        $category->update($categoryData);
         return redirect()->route("categories.index")->with("Category Updated Successfully!");
     }
 }

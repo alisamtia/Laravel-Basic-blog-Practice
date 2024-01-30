@@ -13,7 +13,7 @@ class PostController extends Controller
 {
     public function index(){
         return view("admin.post.index",[
-            "posts"=>Post::latest()->get()
+            "posts"=>Post::latest()->with("category")->get()
         ]);
     }
 
@@ -24,12 +24,12 @@ class PostController extends Controller
     }
 
     public function store(NewPostRequest $request){
-        $postdata=$request->validated();
+        $postData=$request->validated();
 
-        $postdata['thumbnail']=request()->file("thumbnail")->store("thumbnails");
-        $postdata['user_id']=request()->user()->id;
+        $postData['thumbnail']=request()->file("thumbnail")->store("thumbnails");
+        $postData['user_id']=request()->user()->id;
                 
-        Post::create($postdata);
+        Post::create($postData);
         return redirect()->route("posts.index")->with("success","Post Published Sucessfully");
     }
 
@@ -46,11 +46,11 @@ class PostController extends Controller
     }
 
     public function update(UpdatePostRequest $request,Post $post){
-        $Postdata=$request->validated();
-        if(isset($Postdata['thumbnail'])){
-            $Postdata['thumbnail']=request()->file("thumbnail")->store("thumbnails");
+        $postData=$request->validated();
+        if(isset($postData['thumbnail'])){
+            $postData['thumbnail']=request()->file("thumbnail")->store("thumbnails");
         }
-        $post->update($Postdata);
+        $post->update($postData);
         return redirect()->route("posts.index")->with("success","Post Updated Successfully!");
     }
 }
