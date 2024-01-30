@@ -1,4 +1,7 @@
 <x-layout name="Simple Blog Post">
+@if(isset($cPage))
+<div class="text-3xl font-semibold py-7">{{ucwords($cPage)}}</div>
+@endif
 @if(count($posts)>0)
     <div class="gap-10 grid lg:grid-cols-2 grid-cols-1 gap-4">
         <x-posts.basic type="featured" :post=$posts[0] />

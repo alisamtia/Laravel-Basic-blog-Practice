@@ -23,16 +23,17 @@ class PostController extends Controller
             "posts"=>Post::latest()
             ->with(["category","author"])
             ->where('user_id',$user->id)
-            ->paginate()
+            ->paginate(),
+            "cPage"=>"Author: ".$user->username
         ]);
     }
 
     public function categoryFilter(Category $category){
         return view("index",[
-            "posts"=>Post::latest()
+            "posts"=> $category->posts()->latest()
             ->with(["category","author"])
-            ->where('category_id',$category->id)
-            ->paginate()
+            ->paginate(),
+            "cPage"=>"Category: ".$category->name
         ]);
     }
 }
