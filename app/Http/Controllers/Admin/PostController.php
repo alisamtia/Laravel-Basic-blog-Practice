@@ -8,12 +8,16 @@ use App\Http\Requests\NewPostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
 use App\Models\Category;
+use Gate;
 
 class PostController extends Controller
 {
     public function index(){
+        $user_condition=Gate::allows("admin") ? null : [['user_id', '=', auth()->user()->id]];
         return view("admin.post.index",[
-            "posts"=>Post::latest()->with("category")->get()
+            "posts"=>Post::latest()
+            ->where($user_condition)
+            ->with("category")->get()
         ]);
     }
 
@@ -39,10 +43,14 @@ class PostController extends Controller
     }
 
     public function edit(Post $post){
-        return view('admin.post.edit',[
-            "post"=>$post,
-            "categories"=>Category::latest()->get()
-        ]);
+        if(Gate::allows('update-post',$post)){
+            return view('admin.post.edit',[
+                "post"=>$post,
+                "categories"=>Category::latest()->get()
+            ]);
+        }else{
+            abort(403);
+        }
     }
 
     public function update(UpdatePostRequest $request,Post $post){

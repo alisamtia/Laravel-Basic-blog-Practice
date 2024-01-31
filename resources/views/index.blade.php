@@ -9,13 +9,13 @@
         <x-posts.basic type="featured" :post=$posts[1] />
         @endif
     </div>
-    <div class="mt-10 mb-10 grid lg:grid-cols-3 grid-cols-2 gap-4">
     @if(count($posts)>2)
+    <div class="mt-10 mb-10 grid lg:grid-cols-3 grid-cols-2 gap-4">
         @foreach ($posts->skip(2) as $post)
             <x-posts.basic :post=$post />
         @endforeach
-        {{ $posts->links() }}
-    @endif
     </div>
+        <div class="mb-10">{{ $posts->links() }}</div>
+    @endif
 @endif
 </x-layout>

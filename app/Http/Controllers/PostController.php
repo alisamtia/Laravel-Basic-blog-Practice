@@ -20,9 +20,8 @@ class PostController extends Controller
 
     public function authorFilter(User $user){
         return view("index",[
-            "posts"=>Post::latest()
+            "posts"=> $user->posts()->latest()
             ->with(["category","author"])
-            ->where('user_id',$user->id)
             ->paginate(),
             "cPage"=>"Author: ".$user->username
         ]);

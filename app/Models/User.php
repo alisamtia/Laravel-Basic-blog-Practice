@@ -12,6 +12,18 @@ class User extends Model implements AuthenticatableContract
     use HasFactory;
     use Authenticatable;
     protected $guarded=[];
+
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($user){
+            $user->password=bcrypt($user->password);
+        });
+    }
+
+
     public function posts(){
         return $this->hasMany(Post::class);
     }

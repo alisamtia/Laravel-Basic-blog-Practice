@@ -13,7 +13,6 @@ class RegisterController extends Controller
     }
     public function store(RegisterRequest $request){
         $data=$request->validated();
-        $data['password']=bcrypt($data['password']);
         $data['avatar']=request()->file("avatar")->store("avatars");
         $user=User::create($data);
         Auth::login($user);
