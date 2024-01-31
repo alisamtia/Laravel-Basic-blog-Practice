@@ -8,7 +8,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\PostController as AdminPost;
 use App\Http\Controllers\admin\CategoriesController;
-
+use App\Http\Controllers\Admin\UserController;
 
 Route::get('/', [PostController::class,'index'])->name("index");
 Route::get('/post/{post:slug}', [PostController::class,'show'])->name("post.show");
@@ -30,6 +30,10 @@ Route::prefix("dashboard")->middleware("auth")->group(function () {
     ]);
     Route::resource("posts",AdminPost::class)->parameters([
         'posts' => 'post:slug',
+    ]);
+
+    Route::resource("users",UserController::class)->middleware("can:admin")->parameters([
+        'users' => 'user:username',
     ]);
 
 });
