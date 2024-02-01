@@ -5,6 +5,7 @@
         <a href="{{route('dashboard')}}" class="{{ Route::is('dashboard') ? 'text-blue-500' : 'hover:text-blue-500'}} text-lg">Dashboard</a>
         <a href="{{route('posts.index')}}" class="{{ Route::is('posts.index') ? 'text-blue-500' : 'hover:text-blue-500'}} text-lg">All Posts</a>
         <a href="{{route('posts.create')}}" class="{{ Route::is('posts.create') ? 'text-blue-500' : 'hover:text-blue-500'}} text-lg">New Post</a>
+        <a href="{{route('comments.index')}}" class="{{ Route::is('comments.index') ? 'text-blue-500' : 'hover:text-blue-500'}} text-lg">All Comments</a>
         <a href="{{route('categories.index')}}" class="{{ Route::is('categories.index') ? 'text-blue-500' : 'hover:text-blue-500'}} text-lg">All Category</a>
         <a href="{{route('categories.create')}}" class="{{ Route::is('categories.create') ? 'text-blue-500' : 'hover:text-blue-500'}} text-lg">New Category</a>
         @can("admin")

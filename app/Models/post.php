@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use App\Models\Comment;
+use Storage;
 
 class Post extends Model
 {
@@ -33,8 +35,11 @@ class Post extends Model
     public function thumbnail(): Attribute
     {
         return Attribute::make(
-            get: fn (string $value) => "/storage/".$value,
+            get: fn (string $value) => Storage::url($value),
         );
     }
     
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
 }

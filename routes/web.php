@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\RegisterController;
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\PostController as AdminPost;
 use App\Http\Controllers\admin\CategoriesController;
@@ -16,6 +17,8 @@ Route::get('/author/{user:username}', [PostController::class,'authorFilter'])->n
 Route::get('/category/{category:slug}', [PostController::class,'categoryFilter'])->name("posts.categoryFilter");
 
 Route::post('/logout', [SessionController::class,'destroy'])->middleware("auth")->name("login.destroy");
+
+Route::resource('comments',CommentController::class)->only('destroy','store');
 
 Route::middleware(['guest'])->group(function(){
     Route::resource('register',RegisterController::class)->only('index','store');

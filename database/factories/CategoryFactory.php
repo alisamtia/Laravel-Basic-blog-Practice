@@ -18,7 +18,7 @@ class CategoryFactory extends Factory
     {
         return [
             "name"=> $this->faker->word,
-            "user_id"=>rand(1,10)
+            "user_id"=>rand(1,11)
         ];
     }
 }

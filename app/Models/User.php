@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Storage;
+use Category;
+use App\Models\Comment;
 
 class User extends Model implements AuthenticatableContract
 {
@@ -33,5 +35,13 @@ class User extends Model implements AuthenticatableContract
         return Attribute::make(
             get: fn (string $value) => Storage::url($value),
         );
+    }
+
+    public function categories(){
+        return $this->hasMany(Category::class);
+    }
+    
+    public function comments(){
+        return $this->hasMany(Comment::class);
     }
 }

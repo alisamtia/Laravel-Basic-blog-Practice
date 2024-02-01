@@ -6,6 +6,8 @@ use Illuminate\Database\Seeder;
 use \App\Models\User;
 use \App\Models\Category;
 use \App\Models\Post;
+use \App\Models\Comment;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -31,7 +33,8 @@ class DatabaseSeeder extends Seeder
         Category::factory(10)->create();
         Post::factory(10)->create();
         Post::factory(6)->create([
-            'user_id'=>10
+            'user_id'=>11
         ]);
+        Comment::factory(30)->create();
     }
 }
