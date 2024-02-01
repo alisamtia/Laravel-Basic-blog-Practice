@@ -17,7 +17,7 @@ class PostController extends Controller
         return view("admin.post.index",[
             "posts"=>Post::latest()
             ->where($user_condition)
-            ->with("category")->paginate()
+            ->with("category")->paginate(8)
         ]);
     }
 

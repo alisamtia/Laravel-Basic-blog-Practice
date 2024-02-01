@@ -14,7 +14,7 @@ class CategoriesController extends Controller
         return view("admin.category.index",[
             "categories"=>Category::latest()
             ->where($user_condition)
-            ->paginate()
+            ->paginate(8)
         ]);
     }
 

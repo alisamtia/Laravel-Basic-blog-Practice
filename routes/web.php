@@ -6,9 +6,10 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\RegisterController;
 
 use App\Http\Controllers\CommentController;
-use App\Http\Controllers\admin\AdminController;
-use App\Http\Controllers\admin\PostController as AdminPost;
-use App\Http\Controllers\admin\CategoriesController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminComment;
+use App\Http\Controllers\Admin\PostController as AdminPost;
+use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\UserController;
 
 Route::get('/', [PostController::class,'index'])->name("index");
@@ -38,5 +39,7 @@ Route::prefix("dashboard")->middleware("AuthOrAdmin")->group(function () {
     Route::resource("users",UserController::class)->middleware("can:admin")->parameters([
         'users' => 'user:username',
     ]);
+
+    Route::resource('comments',AdminComment::class)->only('index','edit','update');
 
 });

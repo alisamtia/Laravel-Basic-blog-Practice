@@ -14,7 +14,7 @@ class UserController extends Controller
     public function index()
     {
         return view("admin.user.index",[
-            "users"=>User::orderBy('role', 'asc')->paginate()
+            "users"=>User::orderBy('role', 'asc')->paginate(8)
         ]);
     }
 
