@@ -22,7 +22,7 @@ Route::middleware(['guest'])->group(function(){
     Route::resource('login',SessionController::class)->only('index','store');
 });
 
-Route::prefix("dashboard")->middleware("auth")->group(function () {
+Route::prefix("dashboard")->middleware("AuthOrAdmin")->group(function () {
     Route::get('/', [AdminController::class,'index'])->name("dashboard");
 
     Route::resource('categories',CategoriesController::class)->parameters([

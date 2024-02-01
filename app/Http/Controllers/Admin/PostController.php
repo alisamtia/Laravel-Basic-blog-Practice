@@ -17,7 +17,7 @@ class PostController extends Controller
         return view("admin.post.index",[
             "posts"=>Post::latest()
             ->where($user_condition)
-            ->with("category")->get()
+            ->with("category")->paginate()
         ]);
     }
 
@@ -43,17 +43,15 @@ class PostController extends Controller
     }
 
     public function edit(Post $post){
-        if(Gate::allows('update-post',$post)){
-            return view('admin.post.edit',[
-                "post"=>$post,
-                "categories"=>Category::latest()->get()
-            ]);
-        }else{
-            abort(403);
-        }
+        $this->authorize('update', $post);
+        return view('admin.post.edit',[
+            "post"=>$post,
+            "categories"=>Category::latest()->get()
+        ]);
     }
 
     public function update(UpdatePostRequest $request,Post $post){
+
         $postData=$request->validated();
         if(isset($postData['thumbnail'])){
             $postData['thumbnail']=request()->file("thumbnail")->store("thumbnails");

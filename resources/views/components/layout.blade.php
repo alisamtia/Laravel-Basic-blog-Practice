@@ -16,8 +16,10 @@
         </div>
         <img src="{{asset('/images/logo.png')}}" class="mx-auto" width="140">
         <div class="flex gap-10 lg:ml-auto mx-auto">
-            @auth
+            @if(request()->user()?->role==="admin" || request()->user()?->role==="author")
                 <a href="{{route('dashboard')}}" class="{{Route::is('dashboard') ? 'text-blue-500' : '' }} text-lg my-auto hover:text-blue-500">Dashboard</a>
+            @endif
+            @auth
                 <form class="my-auto" action="{{route('login.destroy')}}" method="POST">
                 @csrf
                 <button type="submit" class="text-lg my-auto hover:text-blue-500">Logout</button>

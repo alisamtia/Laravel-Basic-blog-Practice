@@ -1,4 +1,3 @@
-@props(['posts'])
 <x-adminLayout name="All Posts">
     <div class="flex flex-col gap-1">
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -45,6 +44,10 @@
                     </td>
                 </tr>
         @endforeach
+
+        <td colspan="5" class="p-4">
+                {{ $posts->links() }}
+        </td>
 
                 </tbody>
             </table>

@@ -14,7 +14,7 @@ class CategoriesController extends Controller
         return view("admin.category.index",[
             "categories"=>Category::latest()
             ->where($user_condition)
-            ->get()
+            ->paginate()
         ]);
     }
 
@@ -35,13 +35,10 @@ class CategoriesController extends Controller
     }
 
     public function edit(Category $category){
-        if(Gate::allows('update-category',$category)){
-            return view("admin.category.edit",[
-                "category"=>$category
-            ]);
-        }else{
-            abort(403);
-        }
+        $this->authorize('update', $category);
+        return view("admin.category.edit",[
+            "category"=>$category
+        ]);
     }
 
     public function update(Category $category,CategoryRequest $request){

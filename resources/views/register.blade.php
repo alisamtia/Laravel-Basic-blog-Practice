@@ -6,7 +6,6 @@
   <div class="mt-10 mb-10 sm:mx-auto sm:w-full sm:max-w-sm">
     <form class="space-y-6" action="/register" method="POST" enctype='multipart/form-data'>
         @csrf
-        <x-form.text name="name" type="name" />
         <x-form.text name="username" type="username" />
         <x-form.text name="avatar" type="file" />
         <x-form.text name="email" type="email" />

@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('slug')->unqiue();
             $table->string('thumbnail');
 
-            $table->foreignId('user_id');
-            $table->foreignId('category_id');
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('category_id')->constrained();
 
             $table->longText("body");
             $table->timestamps();

@@ -7,6 +7,10 @@
         <a href="{{route('posts.create')}}" class="{{ Route::is('posts.create') ? 'text-blue-500' : 'hover:text-blue-500'}} text-lg">New Post</a>
         <a href="{{route('categories.index')}}" class="{{ Route::is('categories.index') ? 'text-blue-500' : 'hover:text-blue-500'}} text-lg">All Category</a>
         <a href="{{route('categories.create')}}" class="{{ Route::is('categories.create') ? 'text-blue-500' : 'hover:text-blue-500'}} text-lg">New Category</a>
+        @can("admin")
+        <a href="{{route('users.index')}}" class="{{ Route::is('users.index') ? 'text-blue-500' : 'hover:text-blue-500'}} text-lg">All Users</a>
+        <a href="{{route('users.create')}}" class="{{ Route::is('users.create') ? 'text-blue-500' : 'hover:text-blue-500'}} text-lg">New User</a>
+        @endcan
     </div>
 
     <div class="lg:w-3/4 border rounded-2xl p-10">

@@ -1,4 +1,3 @@
-@props(['posts'])
 <x-adminLayout name="All Categories">
     <div class="flex flex-col gap-1">
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -35,7 +34,11 @@
                     </td>
                 </tr>
         @endforeach
-
+        <tr>
+            <td colspan="3" class="p-4">
+                {{ $categories->links() }}
+            </td>
+        </tr>
                 </tbody>
             </table>
         </div>

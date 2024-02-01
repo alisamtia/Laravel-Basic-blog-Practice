@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Http\Requests\UserRequest;
+use App\Http\Requests\CreateUser;
+use Illuminate\Database\QueryException;
 
 class UserController extends Controller
 {
@@ -11,41 +14,57 @@ class UserController extends Controller
     public function index()
     {
         return view("admin.user.index",[
-            "users"=>User::latest()->paginate()
+            "users"=>User::orderBy('role', 'asc')->paginate()
         ]);
     }
 
 
     public function create()
     {
-        //
+        return view("admin.user.create");
     }
 
 
-    public function store(Request $request)
+    public function store(CreateUser $request)
     {
-        //
+        $data=$request->validated();
+        $data['avatar']=request()->file("avatar")->store("avatars");
+        $user=User::create($data);
+        return redirect()->route("users.index")->with("success","User Created Successfully!");
     }
 
 
-    public function show(string $id)
+    public function edit(User $user)
     {
-        //
+        return view("admin.user.edit",[
+            "user"=>$user
+        ]);
     }
 
-
-    public function edit(string $id)
+    public function update(UserRequest $request, User $user)
     {
-        //
+        $data=$request->validated();
+
+        if(isset($data['avatar'])){
+            $data['avatar']=request()->file("avatar")->store("avatars");
+        }
+        if($data['password']==""){
+            unset($data['password']);
+        }else{
+            $data['password']=bcrypt($data['password']);
+        }
+        
+        $user=$user->update($data);
+        return redirect()->route("users.index")->with("success","User Updated Successfully!");
     }
 
-    public function update(Request $request, string $id)
+    public function destroy(User $user)
     {
-        //
-    }
-
-    public function destroy(string $id)
-    {
-        //
+        try {
+            $user->delete();
+            return redirect()->route("users.index")->with("success","User Deleted Successfully!");
+        } catch (QueryException $e) {
+            return redirect()->route("users.index")->with("error","Can't Delete User, User Have Some Data!");
+        }
     }
 }
