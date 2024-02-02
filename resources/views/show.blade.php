@@ -60,44 +60,14 @@
                             </form>
                         @endif
                     @endauth
-                                        <!-- <div class="media mt-6">
-                                            <a href="#">
-                                                <img class="img-lg rounded-circle mr-3 " src="assets/img/100x100.png" alt="..." />
-                                            </a>
-                                            <div class="media-body">
-                                                <h4 class="h6 mb-1">
-                                                    Sara Pamuk<span class="small ml-2 text-muted">2 month ago</span>
-                                                </h4>
-                                                <p class="mb-1">
-                                                    The bookshelves at the Ice Café are, you guessed it.
-                                                </p>
-                                                <a class="text-primary anim-link-2 small" href="#">Reply</a>
-                                            </div>
-                                        </div>
-
-                                        <div class="media mt-6">
-                                            <a href="#">
-                                                <img class="img-lg rounded-circle mr-3 " src="assets/img/100x100.png" alt="..." />
-                                            </a>
-                                            <div class="media-body">
-                                                <h4 class="h6 mb-1">
-                                                    Ela McDoe <span class="small ml-2 text-muted">2 months ago</span>
-                                                </h4>
-                                                <p class="mb-1">
-                                                    You can wander through the rooms of the Ice Hotel, where
-                                                    everything (except for bedding and covers) is made.
-                                                </p>
-                                                <a class="text-primary anim-link-2 small" href="#">Reply</a>
-                                            </div>
-                                        </div> -->
-                                    </div>
-</li>
-@endforeach
+                        </div>
+                        </li>
+                        @endforeach
                             </ul>
                         </div>
 
                         <hr class="my-5" />
-@auth
+                        @auth
                         <h3>Leave a reply</h3>
                         <form action="{{route('comments.store')}}" method="POST">
                             @csrf
