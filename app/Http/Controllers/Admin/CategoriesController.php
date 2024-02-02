@@ -31,7 +31,7 @@ class CategoriesController extends Controller
         $categoryData=$request->validated();
         $categoryData['user_id']=auth()->user()->id;
         Category::create($categoryData);
-        return redirect()->route("categories.index")->with("Category Created Successfully!");
+        return redirect()->route("categories.index")->with("success","Category Created Successfully!");
     }
 
     public function edit(Category $category){
@@ -44,6 +44,6 @@ class CategoriesController extends Controller
     public function update(Category $category,CategoryRequest $request){
         $categoryData=$request->validated();
         $category->update($categoryData);
-        return redirect()->route("categories.index")->with("Category Updated Successfully!");
+        return redirect()->route("categories.index")->with("success","Category Updated Successfully!");
     }
 }

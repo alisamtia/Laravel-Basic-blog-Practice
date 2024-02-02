@@ -1,5 +1,5 @@
 @props(['name','path','padding'=>'3'])
-<x-layout name="{{$name}}" :SEMsg="false">
+<x-layout name="{{$name}}" SEMsg="admin-panel">
 <main role="main">
         <div class="wrapper">
 
@@ -9,7 +9,7 @@
                         <div class="">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb mb-0">
-                                    <li class="breadcrumb-item mr-1 font-weight-bold"><a href="#">Dashboard</a></li>
+                                    <li class="breadcrumb-item mr-1 font-weight-bold"><a href="{{route('dashboard')}}">Dashboard</a></li>
                                     <li class="breadcrumb-item ml-1 font-weight-bold active" aria-current="page">
                                         {{ $path }}
                                     </li>
@@ -45,10 +45,6 @@
                                 <li class="nav-item">
                                     <a class="nav-link active d-flex justify-content-between align-items-center" aria-current="page" href="{{ route('dashboard') }}">
                                         <div style="{{ Route::is('dashboard') ? 'color:#319795' : ''}}"><i class="las la-arrow-right"></i>Dashboard</div>
-                                        <div class="d-flex  align-items-center">
-                                            <p class="mb-0 text-small text-success">
-                                            </p>
-                                        </div>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -71,19 +67,13 @@
                                         </div>
                                     </a>
                                 <li class="nav-item">
-                                    <a class="nav-link active d-flex justify-content-between align-items-center" aria-current="page" href="dash-settings.html">
-                                        <div><i class="las la-cog"></i>Settings</div>
-
+                                    <a class="nav-link active d-flex justify-content-between align-items-center" aria-current="page" href="{{route('categories.index')}}">
+                                        <div style="{{ Route::is('categories.index') ? 'color:#319795' : ''}}"><i class="las la-box"></i>Categories</div>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active d-flex justify-content-between align-items-center" aria-current="page" href="dash-invoice.html">
-                                        <div><i class="las la-receipt"></i>Invoice</div>
-                                        <div class="d-flex  align-items-center">
-                                            <p class="mb-0 text-small text-success">
-
-                                            </p>
-                                        </div>
+                                    <a class="nav-link active d-flex justify-content-between align-items-center" aria-current="page" href="{{route('users.index')}}">
+                                        <div style="{{ Route::is('users.index') ? 'color:#319795' : ''}}"><i class="las la-users"></i>All Users</div>
                                     </a>
                                 </li>
                                 <li class="nav-item">

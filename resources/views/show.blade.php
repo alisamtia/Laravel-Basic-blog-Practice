@@ -102,6 +102,7 @@
                         <form action="{{route('comments.store')}}" method="POST">
                             @csrf
                             <div class="form-group">
+                                <input name="post_id" type="hidden" value="{{$post->id}}" />
                                 <textarea required name="body" rows="6" class="form-control" placeholder="Your Reply">{{old('body')}}</textarea>
                                 @error('body')
                                     <p style="color:red;">{{$message}}</p>

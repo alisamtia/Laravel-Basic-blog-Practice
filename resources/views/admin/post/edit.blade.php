@@ -4,10 +4,12 @@
         @method("put")
         <x-form.text value="{{ old('title') ?? $post->title }}" name="title" type="text" />
         <x-form.textarea rows="10" name="body" default="{{old('body') ?? $post->body}}"></x-form.textarea>
-        
-        <div class="flex gap-3">
-            <x-form.text required="false" type="file" name="thumbnail" />
-            <img src="{{$post->thumbnail}}" width="100" alt="">
+
+        <div style="display:flex;gap:20px;">
+            <div style="width:80%; margin-top:auto;margin-bottom:auto;">
+                <x-form.text required="false" type="file" name="thumbnail" />
+            </div>
+            <img style="width:20%" src="{{$post->thumbnail}}" width="100" alt="">
         </div>
 
         <x-form.select name="category_id" frontname="Category">

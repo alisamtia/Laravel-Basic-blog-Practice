@@ -10,7 +10,7 @@
         <div class="col-lg-6 col-md-12">
             <div class="p-4">
                 <div class="blog-date d-flex justify-content-start align-items-center mb-2">
-                    <a href="#!" class="label font-weight-bold">{{ ucwords($post->category->name) }}</a>
+                    <a href="{{ route('posts.categoryFilter',$post->category->slug) }}" class="label font-weight-bold">{{ ucwords($post->category->name) }}</a>
                 </div>
                 <h2 class="h3 mb-2">
                     <a href="{{route('post.show',$post)}}" class="blog-title text-dark">{{ $post->title }}</a>

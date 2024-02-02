@@ -10,7 +10,7 @@ class PostController extends Controller
 {
     public function index(){
         return view("index",[
-            "posts"=>Post::latest()->with(["category","author"])->paginate(9)
+            "posts"=>Post::latest()->with(["category","author"])->paginate(10)
         ]);
     }
 
@@ -22,8 +22,8 @@ class PostController extends Controller
         return view("index",[
             "posts"=> $user->posts()->latest()
             ->with(["category","author"])
-            ->paginate(),
-            "cPage"=>"Author: ".$user->username
+            ->paginate(10),
+            "cPage"=>"Author / ".$user->username
         ]);
     }
 
@@ -31,8 +31,8 @@ class PostController extends Controller
         return view("index",[
             "posts"=> $category->posts()->latest()
             ->with(["category","author"])
-            ->paginate(),
-            "cPage"=>"Category: ".$category->name
+            ->paginate(10),
+            "cPage"=>"Category / ".$category->name
         ]);
     }
 }

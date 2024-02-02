@@ -1,4 +1,4 @@
-@props(['name','SEMsg'=>"true"])
+@props(['name','SEMsg'=>"false"])
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,7 +60,7 @@
 
 
 
-@if(!$SEMsg==="false")
+@if($SEMsg==="false")
 @if(session('error'))
 <div class="alert-e">
   <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
@@ -107,10 +107,12 @@ setTimeout(function() {
                             <a class="nav-link dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown" aria-expanded="false"><i class="las la-user mr-2" style="font-size:22px;"></i></a>
                             <div class="dropdown-menu dropdown-menu-right" role="menu">
                                 @auth
-                                <a class="dropdown-item font-weight-bold swap-link" href="{{ route('dashboard') }}"><i class="las la-user bg-info-alt p-1 rounded text-info"></i> Dashboard</a>
-                                <a class="dropdown-item swap-link" href="{{ route('posts.index') }}"><i class="las la-sign-out-alt bg-warning-alt text-warning p-1 rounded"></i> All Posts</a>
-                                <a class="dropdown-item swap-link" href="{{ route('posts.create') }}"><i class="las la-cloud-download-alt bg-success-alt text-success p-1 rounded"></i> New Post</a>
-                                <div class="dropdown-divider"></div>
+                                @if(request()->user()->role==="author" || request()->user()->role==="admin")
+                                    <a class="dropdown-item font-weight-bold swap-link" href="{{ route('dashboard') }}"><i class="las la-user bg-info-alt p-1 rounded text-info"></i> Dashboard</a>
+                                    <a class="dropdown-item swap-link" href="{{ route('posts.index') }}"><i class="las la-sign-out-alt bg-warning-alt text-warning p-1 rounded"></i> All Posts</a>
+                                    <a class="dropdown-item swap-link" href="{{ route('posts.create') }}"><i class="las la-cloud-download-alt bg-success-alt text-success p-1 rounded"></i> New Post</a>
+                                    <div class="dropdown-divider"></div>
+                                @endif
                                 <form class="dropdown-item swap-link" action="{{ route('logout') }}" method="POST">@method("DELETE") @csrf<button action="submit" style="background:none;border:none;padding:0px;margin:0px;"><i class="las la-sign-out-alt bg-danger-alt text-danger p-1 rounded"></i> Logout</button></form>
                                 @endauth
                                 @guest

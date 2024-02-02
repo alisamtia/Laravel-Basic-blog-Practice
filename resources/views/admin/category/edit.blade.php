@@ -1,8 +1,9 @@
-<x-adminLayout name="Edit Category">
-<form action="{{ route('categories.update',$category->slug) }}" class="flex flex-col gap-5" method="POST" enctype='multipart/form-data'>
+<x-adminLayout name="New Category" path="Category / {{ucwords($category->name)}}">
+<h4 class="card-title mb-3">Edit "{{ ucwords($category->name) }}" Category</h4>
+<form action="{{ route('categories.update',$category) }}" class="flex flex-col gap-5" method="POST" enctype='multipart/form-data'>
         @csrf
-        @method('put')
-        <x-form.text value="{{old('category') ?? $category->name}}" name="name" type="text" />
-        <x-form.btn text="Update Category" />
+        @method("PATCH")
+        <x-form.text value="{{ucwords($category->name)}}" name="name" type="text" />
+        <x-form.small-btn>Update Category</x-form.small-btn>
     </form>
 </x-adminLayout>

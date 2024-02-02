@@ -1,4 +1,4 @@
-<x-adminLayout name="Create User">
+<x-adminLayout padding="5" name="Create User" path="Users / Create">
     <form action="{{ route('users.store') }}" class="flex flex-col gap-5" method="POST" enctype='multipart/form-data'>
         @csrf
         <x-form.text value="{{ old('username') }}" name="username" type="text" />
@@ -12,6 +12,6 @@
             <option value="author" {{ old('role')=="author" ? 'selected' : '' }}>Author</option>
             <option value="admin" {{ old('role')=="admin" ? 'selected' : '' }}>Admin</option>
         </x-form.select>
-        <x-form.btn text="Create User" />
+        <x-form.small-btn>Create User</x-form.small-btn>
     </form>
 </x-adminLayout>

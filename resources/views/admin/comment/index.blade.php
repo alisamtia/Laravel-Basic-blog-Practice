@@ -22,7 +22,7 @@
                     </button>
                     <ul class="list-unstyled card-option dropdown-menu dropdown-menu-right">
                         <li class="dropdown-item reload-card"><a href="{{ route('comments.edit',$comment) }}"><i class="las la-pencil-alt"></i> Edit</a></li>
-                        <li class="dropdown-item close-card"><a href="#!" style="color:red !important;"><i class="las la-trash"></i> Remove</a></li>
+                        <li class="dropdown-item close-card"><form method="POST" action="{{route('comments.destroy',$comment)}}">@csrf @method("DELETE")<button type="submit" style="color:red !important;background:none;border:none;padding:0px;margin:0px;font-weight:700;color:red;"><i class="las la-trash"></i> Remove</button></form></li>
                     </ul>
                 </div>
             </div>
