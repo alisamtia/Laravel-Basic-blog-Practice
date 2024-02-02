@@ -1,56 +1,55 @@
-<x-adminLayout name="All Posts">
-    <div class="flex flex-col gap-1">
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+<x-adminLayout name="All Posts" path="Posts">
+<div class="card-header py-3 border-bottom">
+    <div class="d-flex align-items-center">
+        <div>
+            <h6 class="card-title mb-0">All Posts</h6>
+        </div>
+    </div>
+</div>
+<div class="">
+    <div class="table-responsive">
+        <table class="table table-hover m-b-0">
+            <thead>
                 <tr>
-                    <th scope="col" class="px-6 py-3">
-                        
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Title
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Category
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                    </th>
+                    <th class="border-0">Image</th>
+                    <th class="border-0" style="width:400px">Name</th>
+                    <th class="border-0" data-breakpoints="sm xs">Category</th>
+                    <th class="border-0" data-breakpoints="xs">Created</th>
+
+                    <th class="border-0" data-breakpoints="sm xs md">Action</th>
                 </tr>
             </thead>
             <tbody>
+            @foreach($posts as $post)
+                <tr>
+                    <td><img src="{{ asset($post->thumbnail) }}" alt="Product img" class="img-lg rounded"></td>
+                    <td>
+                        <h6>{{$post->title}}</h6>
+                    </td>
+                    <td>
 
-        @foreach($posts as $post)
-                <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        <img width="200" src="{{$post->thumbnail}}">
-                    </th>
-                    <td class="px-6 py-4">
-                        {{ $post->title }}
-                    </td>
-                    <td class="px-6 py-4">
-                        {{ ucwords($post->category->name) }}
-                    </td>
-                    <td class="px-6 py-4">
-                        <a href="{{route('posts.edit',$post->slug)}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                    </td>
-                    <td class="px-6 py-4">
-                        <form method="POST" action="{{route('posts.destroy',$post->slug)}}">
-                            @csrf
-                            @method("DELETE")
-                            <button action="submit" class="font-medium text-red-600 dark:text-blue-500 hover:underline">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-        @endforeach
+                        <span class="text-muted">{{ucwords($post->category->name)}}</span>
+                        </td>
+                        <td>{{$post->created_at->diffForHumans()}}</td>
 
-        <td colspan="5" class="p-4">
-                {{ $posts->links() }}
-        </td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a href="{{route('posts.edit',$post)}}"><button type="button" class="btn btn-sm btn-primary"><i class="las la-edit"></i></button></a>
+
+                                <form method="POST" action="{{route('posts.destroy',$post->slug)}}">
+                                    @csrf
+                                    @method("DELETE")
+                                    <button action="submit" class="btn btn-sm btn-danger"><i class="las la-trash-alt"></i></button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    @endforeach
 
                 </tbody>
             </table>
         </div>
-    </div>
+        <hr>
+    {{ $posts->links() }}
+</div>
 </x-adminLayout>

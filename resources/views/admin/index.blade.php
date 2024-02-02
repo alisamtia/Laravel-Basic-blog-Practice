@@ -1,4 +1,4 @@
-<x-adminLayout name="Dashboard">
+<x-adminLayout name="Dashboard" path="" padding="7">
     <h1 class="text-2xl font-bold">Lorem ipsum dolor sit amet: </h1>
     <br>
     <p class="text-lg">

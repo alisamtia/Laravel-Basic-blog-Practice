@@ -1,22 +1,40 @@
-<x-layout name="Register - Simple Blog Post">
-    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-        <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Register your account</h2>
-    </div>
-
-  <div class="mt-10 mb-10 sm:mx-auto sm:w-full sm:max-w-sm">
-    <form class="space-y-6" action="/register" method="POST" enctype='multipart/form-data'>
-        @csrf
-        <x-form.text name="username" type="username" />
-        <x-form.text name="avatar" type="file" />
-        <x-form.text name="email" type="email" />
-        <x-form.text name="password" type="password" />
-        <x-form.btn text="Register" />
-    </form>
-
-    <p class="mt-10 text-center text-sm text-gray-500">
-      Already a member?
-      <a href="/login" class="font-semibold leading-6 text-blue-500 hover:text-blue-500">Login Now</a>
-    </p>
-
-  </div>
+<x-layout name="Register">
+  <main role="main">
+        <div class="account-pages mt-7 mb-5 ">
+            <div class="container">
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="col-md-8 col-lg-6 col-xl-5">
+                        <div class="card">
+                            <div class="card-body p-4">
+                                <div class="text-center w-75 m-auto">
+                                    <a href="{{ route('index') }}">
+                                        <span><img src="{{asset('assets/images/logo-dark.png')}}" alt="" height="22"></span>
+                                    </a>
+                                    <h4>Create Account</h4>
+                                    <p class="text-muted mb-4 mt-3">Get started with your free account</p>
+                                </div>
+                                <form class="space-y-6" action="{{route('register.store')}}" method="POST" enctype='multipart/form-data'>
+                                  @csrf
+                                  <x-form.text name="username" type="username" />
+                                  <x-form.text name="avatar" type="file" />
+                                  <x-form.text name="email" type="email" />
+                                  <x-form.text name="password" type="password" />
+                                  <x-form.btn>Create Account</x-form.btn>
+                                </form>
+                                <div class="text-center">
+                                </div>
+                            </div>
+                            <!-- end card-body -->
+                        </div>
+                        <!-- end card -->
+                        <div class="row mt-3">
+                            <div class="col-12 text-center">
+                                <p class="text-muted">Have an account? <a href="{{ route('login.index') }}" class="text-primary font-weight-medium ml-1">Login</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</main>
 </x-layout>

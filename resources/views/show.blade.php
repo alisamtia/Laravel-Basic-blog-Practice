@@ -1,77 +1,135 @@
-<x-layout name="{{$post->title}} - Simple Blog Post">
-    <img src="{{$post->thumbnail}}" class="rounded-xl" />
-    <h1 class="py-4 text-4xl font-bold text-black">{{$post->title}}</h1>
-    <div class="mb-5 flex gap-3">
-        <a href="{{ route('posts.categoryFilter',$post->category->slug) }}"><p class="text-blue-500 my-auto">{{ ucwords($post->category->name) }}</p></a>
-        <div class="flex gap-2">
-            <a href="{{ route('posts.authorFilter',$post->author->username) }}">
-                <div class="flex gap-2">
-                        <img src="{{ $post->author->avatar }}" width="40" class="rounded-3xl">
-                        <p class="my-auto">{{ucwords($post->author->username)}}</p>
-                </div>
-            </a>
-            <span class="my-auto text-gray-400 lg:text-sm text-xs">{{$post->created_at->diffForHumans()}}</span>
-        </div>
-    </div>
-    <p class="pb-7">
-        {{ $post->body }}
-    </p>
+<x-layout name="{{$post->title}} Post">
 
-<section class="bg-white dark:bg-gray-900 py-8 lg:py-16 antialiased">
-    @auth
-    <div class="max-w-6xl mx-auto px-4">
-        <div class="flex justify-between items-center mb-6">
-            <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Discussion ({{ count($post->comments) }})</h2>
-        </div>
-        <form action="{{route('comments.store')}}" method="POST" class="mb-6">
-            @csrf
-            <input value="{{$post->id}}" name="post_id" type="hidden" />
-            <x-form.textarea name="body" rows="5" />
-            <div class="mt-4">
-                <x-form.btn text="Post comment" />
-            </div>
-        </form>
-    @endauth
 
-    @guest
-        <h4 class="text-xl font-bold">Register or Login to Participate in the Comments</h4>
-    @endguest
+<main role="main">
+        <div class="wrapper">
 
-    @if(count($post->comments))
-        @foreach($post->comments as $comment)
-            <article class="border-b-2 p-6 text-base bg-white rounded-lg dark:bg-gray-900">
-                <footer class="flex justify-between items-center mb-2">
-                    <div class="flex items-center">
-                        <p class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold"><img
-                                class="mr-2 w-6 h-6 rounded-full"
-                                src="{{$comment->user->avatar}}"
-                                alt="{{$comment->user->username}}">{{ ucwords($comment->user->username) }}</p>
-                        <p class="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-02-08"
-                                title="{{$comment->created_at->diffForHumans()}}">{{$comment->created_at->diffForHumans()}}</time></p>
-                    </div>
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-9">
+                        <div class="blog-post mb-5 mt-6">
+                            <div class="blog-post--header mb-6">
+                                <h1 class="blog-title">
+                                    {{ $post->title }}
+                                </h1>
+                                <div class="meta-info">
+                                    <ul class="list-unstyled list-inline">
+                                        <li class="post-author list-inline-item">
+                                            By <a href="#" tabindex="0">{{ ucwords($post->author->username) }}</a>
+                                        </li>
+                                        <li class="post-date list-inline-item">{{ $post->created_at->diffForHumans() }}</li>
+                                        <li class="post-comment list-inline-item">{{ count($post->comments) }} Comments</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        {!! $post->body !!}
+                        </div>
+                        <hr class="my-5" />
+                        <div class="mb-3 mt-5">
+                            <h3>Comments</h3>
+                            <ul class="m-0 p-0">
+@foreach($post->comments as $comment)
+                                <li class="media mt-5">
+                                    <a href="#">
+                                        <img class="img-lg rounded-circle mr-3 " src="{{asset($comment->user->avatar)}}" alt="..." />
+                                    </a>
+                                    <div class="media-body">
+                                        <h4 class="h6 mb-1">
+                                        {{ucwords($comment->user->username)}} <span class="small ml-2 text-muted">{{$comment->created_at->diffForHumans()}}</span>
+                                        </h4>
+                                        <p class="mb-1">
+                                            The Ice Village is connected to the Hoshino Resort Tomamu, and it’s
+                                            open both for day trips and longer stays for the resort’s guests—
+                                            starting.
+                                        </p>
                     @auth
                         @if(request()->user()->role==="admin")
                         <div class="flex">
-                            <a href="{{route('comments.edit',$comment)}}" class="text-blue-500 flex items-center p-2 text-sm font-medium text-center dark:text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600">Edit</a>
-                            <form action="{{route('comments.destroy',$comment)}}" method="POST">
+                            <form action="{{route('comments.destroy',$comment)}}" method="POST" style="display:flex;gap:5px;">
                                 @csrf
                                 @method("DELETE")
-                                <button class="text-red-500 flex items-center p-2 text-sm font-medium text-center dark:text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600" type="submit">Remove</button>
+                                <a href="{{route('comments.edit',$comment)}}" style="font-weight:400;">Edit</a>
+                                <button style="padding:0px !important;border:none;background:none;color:red;font-weight:400;" type="submit">Remove</button>
                             </form>
                         </div>
                         @elseif($comment->user_id===request()->user()->id)
                             <form action="{{route('comments.destroy',$comment)}}" method="POST">
                                 @csrf
                                 @method("DELETE")
-                                <button class="text-red-500 flex items-center p-2 text-sm font-medium text-center dark:text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600" type="submit">Remove</button>
+                                <button style="padding:0px !important;border:none;background:none;color" type="submit">Remove</button>
                             </form>
                         @endif
                     @endauth
-                </footer>
-                <p class="text-gray-500 dark:text-gray-400">{{ $comment->body }}</p>
-            </article>
-        @endforeach
-    @endif
-    
-</section>
+                                        <!-- <div class="media mt-6">
+                                            <a href="#">
+                                                <img class="img-lg rounded-circle mr-3 " src="assets/img/100x100.png" alt="..." />
+                                            </a>
+                                            <div class="media-body">
+                                                <h4 class="h6 mb-1">
+                                                    Sara Pamuk<span class="small ml-2 text-muted">2 month ago</span>
+                                                </h4>
+                                                <p class="mb-1">
+                                                    The bookshelves at the Ice Café are, you guessed it.
+                                                </p>
+                                                <a class="text-primary anim-link-2 small" href="#">Reply</a>
+                                            </div>
+                                        </div>
+
+                                        <div class="media mt-6">
+                                            <a href="#">
+                                                <img class="img-lg rounded-circle mr-3 " src="assets/img/100x100.png" alt="..." />
+                                            </a>
+                                            <div class="media-body">
+                                                <h4 class="h6 mb-1">
+                                                    Ela McDoe <span class="small ml-2 text-muted">2 months ago</span>
+                                                </h4>
+                                                <p class="mb-1">
+                                                    You can wander through the rooms of the Ice Hotel, where
+                                                    everything (except for bedding and covers) is made.
+                                                </p>
+                                                <a class="text-primary anim-link-2 small" href="#">Reply</a>
+                                            </div>
+                                        </div> -->
+                                    </div>
+</li>
+@endforeach
+                            </ul>
+                        </div>
+
+                        <hr class="my-5" />
+@auth
+                        <h3>Leave a reply</h3>
+                        <form action="{{route('comments.store')}}" method="POST">
+                            @csrf
+                            <div class="form-group">
+                                <textarea required name="body" rows="6" class="form-control" placeholder="Your Reply">{{old('body')}}</textarea>
+                                @error('body')
+                                    <p style="color:red;">{{$message}}</p>
+                                @enderror
+                            </div>
+                            <div>
+                                <button class="btn btn-primary btn-wide btn-md" type="submit">
+                                    Leave Reply
+                                </button>
+                            </div>
+                        </form>
+@endauth
+@guest
+    <h4 class="text-xl font-bold">Register or Login to Participate in the Comments</h4>
+@endguest
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+
+
+
+
+
+
+
 </x-layout>

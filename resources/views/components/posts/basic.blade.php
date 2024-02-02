@@ -1,16 +1,30 @@
-@props(["type"=>"normal","post"])
-
-<div class="border p-5 rounded-3xl">
-    <img src="{{$post->thumbnail}}" class="rounded-3xl">
-    <a href="{{ route('posts.categoryFilter',$post->category->slug) }}"><p class="font-sans mt-2 font-md ml-1 text-blue-500 text-md">{{ ucwords($post->category->name) }}</p></a>
-    <a href="{{route('post.show',$post->slug)}}"><h3 class="{{$type=='featured'?'text-3xl':'lg:text-2xl text-xl'}} mt-2 font-sans m-none font-semibold">{{ $post->title }}</h3></a>
-    <div class="{{$type=='normal'?'lg:flex':'flex'}} mt-3 gap-2">
-        <a href="{{ route('posts.authorFilter',$post->author->username) }}">
-            <div class="flex gap-2">
-                    <img src="{{ $post->author->avatar }}" width="40" class="rounded-3xl">
-                    <p class="my-auto {{$type=='normal'? 'text-xs lg:text-lg' : 'text-lg'}}">{{ucwords($post->author->username)}}</p>
+@props(["post"])
+<div class="col-md-4 mb-4">
+    <div class="card hover-box-shadow">
+        <div class="post-thumb">
+            <img class="card-img-top" src="{{asset($post->thumbnail)}}" />
+        </div>
+        <div class="card-body pt-4 pb-0">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <a href="{{ route('posts.categoryFilter',$post->category->slug) }}" class="label font-weight-bold">{{ucwords($post->category->name)}}</a>
+                <span class="small">{{$post->created_at->diffForHumans()}}</span>
             </div>
-        </a>
-            <span class="my-auto text-gray-400 lg:text-sm text-xs">{{$post->created_at->diffForHumans()}}</span>
+            <a href="{{route('post.show',$post)}}" class="h4 card-title mb-2">{{$post->title}}</a>
+            <a href="{{ route('posts.authorFilter',$post->author) }}">
+            <div class="card-footer d-flex justify-content-between align-items-center mt-5 px-0 py-3">
+                <div class="d-flex align-items-center">
+                    <img src="{{asset($post->author->avatar)}}" class="img-sm rounded-circle sm-avatar" alt="..." />
+                    <div class="ml-2">
+                        <span class="h6"
+                      ><span class="font-weight-bold"
+                      ><span class="text-muted">By:</span> </span>{{ucwords($post->author->username)}}</span>
+                    </div>
+                </div>
+</a>
+                <a href="#!" class="bg-success-alt py-1 px-2 rounded-pill text-success small">
+                    <i class="las la-heart mr-1"></i>49
+                </a>
+            </div>
+        </div>
     </div>
 </div>

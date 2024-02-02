@@ -10,7 +10,7 @@ class PostController extends Controller
 {
     public function index(){
         return view("index",[
-            "posts"=>Post::latest()->with(["category","author"])->paginate()
+            "posts"=>Post::latest()->with(["category","author"])->paginate(9)
         ]);
     }
 

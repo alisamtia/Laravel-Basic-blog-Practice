@@ -17,7 +17,7 @@ Route::get('/post/{post:slug}', [PostController::class,'show'])->name("post.show
 Route::get('/author/{user:username}', [PostController::class,'authorFilter'])->name("posts.authorFilter");
 Route::get('/category/{category:slug}', [PostController::class,'categoryFilter'])->name("posts.categoryFilter");
 
-Route::post('/logout', [SessionController::class,'destroy'])->middleware("auth")->name("login.destroy");
+Route::delete('/logout', [SessionController::class,'destroy'])->middleware("auth")->name("logout");
 
 Route::resource('comments',CommentController::class)->only('destroy','store');
 
