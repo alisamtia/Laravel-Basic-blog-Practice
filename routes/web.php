@@ -12,6 +12,13 @@ use App\Http\Controllers\Admin\PostController as AdminPost;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\UserController;
 
+use Spatie\Sitemap\SitemapGenerator;
+use Spatie\Sitemap\Sitemap;
+use Spatie\Sitemap\Tags\Url;
+use App\Models\Post;
+use App\Models\Category;
+use App\Models\User;
+
 Route::get('/', [PostController::class,'index'])->name("index");
 Route::get('/post/{post:slug}', [PostController::class,'show'])->name("post.show");
 Route::get('/author/{user:username}', [PostController::class,'authorFilter'])->name("posts.authorFilter");
@@ -42,4 +49,25 @@ Route::prefix("dashboard")->middleware("AuthOrAdmin")->group(function () {
 
     Route::resource('comments',AdminComment::class)->only('index','edit','update');
 
+});
+
+Route::get("/sitemap",function(){
+    $sitemap=Sitemap::create()
+        ->add(Url::create('/'));
+
+    Category::all()->each(function(Category $category) use ($sitemap){
+        $sitemap->add(Url::create('/category/'.$category->slug));
+    });
+
+    User::where('role','author')->get()->each(function(User $user) use ($sitemap){
+        $sitemap->add(Url::create('/author/'.$user->username));
+    });
+
+    Post::all()->each(function(Post $post) use ($sitemap){
+        $sitemap->add(Url::create('/posts/'.$post->slug));
+    });
+    
+    $sitemap->writeTofile(public_path('sitemap.xml'));
+
+    return 'Successfully indexed Sitemap!';
 });

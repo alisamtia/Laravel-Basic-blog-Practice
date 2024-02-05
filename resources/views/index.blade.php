@@ -23,18 +23,18 @@
 
             <div class="container">
                 @if(count($posts))
-                <x-posts.featured :post=$posts[0] />
+                    <x-posts.featured :post=$posts[0] />
 
+                    @if(count($posts)>1)
+                    <div class="row d-flex flex-wrap align-items-stretch">
+                        @foreach($posts->skip(1) as $post)
+                            <x-posts.basic :post=$post />
+                        @endforeach
+                    </div>
+                    @endif
 
-                @if(count($posts)>1)
-                <div class="row d-flex flex-wrap align-items-stretch">
-                    @foreach($posts->skip(1) as $post)
-                        <x-posts.basic :post=$post />
-                    @endforeach
-                </div>
-                @endif
-
-                
+                @else
+                    <h3 class="text-center my-7">No Post Found!!</h3>
                 @endif
 
 <div style="display:flex;justify-content:center;">
