@@ -11,8 +11,8 @@
             @endforeach
         </x-form.select>
 
-        <x-form.text name="meta_title" type="text" />
-        <x-form.textarea rows="5" name="meta_description" />
+        <x-form.text name="meta_keywords" display="Meta Keywords (Enter Coma Seprated Keywords...)" type="text" />
+        <x-form.textarea rows="5" name="meta_description" display="Meta Description" />
 
         <x-form.small-btn>Publish Post</x-form.small-btn>
     </form>

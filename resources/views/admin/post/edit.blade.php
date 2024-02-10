@@ -5,6 +5,7 @@
         <x-form.text value="{{ old('title') ?? $post->title }}" name="title" type="text" />
         <x-form.textarea rows="10" name="body" default="{{old('body') ?? $post->body}}"></x-form.textarea>
 
+
         <div style="display:flex;gap:20px;">
             <div style="width:80%; margin-top:auto;margin-bottom:auto;">
                 <x-form.text required="false" type="file" name="thumbnail" />
@@ -18,6 +19,11 @@
                 <option {{ $category->id==$post->category_id ? 'selected' : '' }} {{ $category->id==old('category_id') ? 'selected' : '' }} value="{{$category->id}}">{{ucwords($category->name)}}</option>
             @endforeach
         </x-form.select>
+
+        <x-form.text name="meta_keywords" display="Meta Keywords (Enter Coma Seprated Keywords...)" type="text" value="{{ old('meta_keywords') ?? $post->meta_keywords }}" />
+        <x-form.textarea rows="5" name="meta_description" display="Meta Description" default="{{ old('meta_description') ?? $post->meta_description }}" />
+
+
         <x-form.small-btn>Publish Post</x-form.small-btn>
     </form>
 </x-adminLayout>

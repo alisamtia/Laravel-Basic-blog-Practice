@@ -18,6 +18,8 @@ class PostFactory extends Factory
     {
         return [
             "title"=> $this->faker->sentence,
+            "meta_keywords"=> $this->faker->words(5,true),
+            "meta_description"=> $this->faker->paragraph(),
             "user_id"=>rand(1,11),
             "category_id"=>rand(1,10),
             "thumbnail"=>"thumbnails/p-".rand(1,5).".jpg",

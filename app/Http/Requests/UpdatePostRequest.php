@@ -26,6 +26,8 @@ class UpdatePostRequest extends FormRequest
             "title"=>"required|min:6",
             "body"=>"required|min:200",
             "thumbnail"=>"image",
+            "meta_keywords"=>"required|min:6|max:225",
+            "meta_description"=>"required|min:100|max:160",
             "category_id"=>["required",Rule::exists("categories","id")]
         ];
     }

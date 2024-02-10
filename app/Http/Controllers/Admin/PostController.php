@@ -38,6 +38,7 @@ class PostController extends Controller
     }
 
     public function destroy(Post $post){
+        unlink($post->thumbnail);
         $post->delete();
         return redirect()->route("posts.index")->with("success","Post Deleted Successfully!");
     }

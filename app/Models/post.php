@@ -13,12 +13,12 @@ use Storage;
 class Post extends Model
 {
     use HasFactory;
-    protected $guarded=[];
+    protected $fillable=['title','slug','thumbnail','meta_keywords','meta_description','user_id','category_id','body'];
 
     public static function boot()
     {
         parent::boot();
-
+        
         static::creating(function($post){
             $post->slug=Str::slug($post->title);
         });

@@ -14,7 +14,7 @@ class User extends Model implements AuthenticatableContract
 {
     use HasFactory;
     use Authenticatable;
-    protected $guarded=[];
+    protected $fillable=['username','email','avatar','role','password'];
 
 
     public static function boot()

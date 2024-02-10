@@ -1,4 +1,4 @@
-<x-layout name="{{$post->title}} Post" meta_description="{{$post->meta_description}}">
+<x-layout name="{{$post->title}} Post" meta_description="{{$post->meta_description}}" meta_keywords="{{$post->meta_keywords}}">
 
 
 <main role="main">

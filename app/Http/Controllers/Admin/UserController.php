@@ -61,6 +61,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         try {
+            unlink($user->avatar);
             $user->delete();
             return redirect()->route("users.index")->with("success","User Deleted Successfully!");
         } catch (QueryException $e) {

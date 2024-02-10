@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug')->unqiue();
             $table->string('thumbnail');
+            $table->string('meta_keywords');
+            $table->string('meta_description');
 
             $table->foreignId('user_id')->constrained();
             $table->foreignId('category_id')->constrained();
