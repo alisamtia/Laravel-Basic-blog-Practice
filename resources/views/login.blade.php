@@ -1,4 +1,4 @@
-<x-layout name="Login - Simple Blog Post">
+<x-layout name="Login" meta_description="Login to the our website by using this You can participate in Comments by Logging in">
   <main role="main">
         <div class="account-pages mt-7 mb-5 ">
             <div class="container">

@@ -1,4 +1,4 @@
-<x-layout name="{{$post->title}} Post">
+<x-layout name="{{$post->title}} Post" meta_description="{{$post->meta_description}}">
 
 
 <main role="main">
@@ -15,7 +15,7 @@
                                 <div class="meta-info">
                                     <ul class="list-unstyled list-inline">
                                         <li class="post-author list-inline-item">
-                                            By <a href="#" tabindex="0">{{ ucwords($post->author->username) }}</a>
+                                            By <a href="{{ route('posts.authorFilter',$post->author) }}" tabindex="0">{{ ucwords($post->author->username) }}</a>
                                         </li>
                                         <li class="post-date list-inline-item">{{ $post->created_at->diffForHumans() }}</li>
                                         <li class="post-comment list-inline-item">{{ count($post->comments) }} Comments</li>

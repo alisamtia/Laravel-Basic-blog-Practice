@@ -1,8 +1,8 @@
-<x-layout name="Hey">
+<x-layout name="{{$cName ?? ''}}" meta_description="{{ isset($cName) ? 'Here are all the Posts '.$cName : '' }}">
 <main role="main">
         <div class="wrapper mt-5">
 
-@if(isset($cPage))
+        @if(isset($cPage))
         <div class="breadcrumb-wrap ml-5">
                 <div class="container py-3">
                     <div class="row d-flex justify-content-md-between justify-content-sm-center">
@@ -18,8 +18,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-@endif
+        </div>
+        @endif
 
             <div class="container">
                 @if(count($posts))
@@ -31,7 +31,7 @@
                             <x-posts.basic :post=$post />
                         @endforeach
                     </div>
-                    @endif
+                 @endif
 
                 @else
                     <h3 class="text-center my-7">No Post Found!!</h3>

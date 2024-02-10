@@ -1,4 +1,4 @@
-<x-layout name="Register">
+<x-layout name="Register"  meta_description="Register to the our website by using this You can participate in Comments by Creating an account">
   <main role="main">
         <div class="account-pages mt-7 mb-5 ">
             <div class="container">

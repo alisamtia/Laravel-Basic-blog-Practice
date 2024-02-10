@@ -84,7 +84,7 @@
                             </ul>
 
                             <h6 class="sidebar-heading d-flex justify-content-between align-items-center mt-lg-6 mt-sm-3 mb-1 text-muted">
-                                <span>Help center</span>
+                                <span>Extras</span>
                                 <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle">
                                         <circle cx="12" cy="12" r="10"></circle>
@@ -94,20 +94,14 @@
                                 </a>
                             </h6>
                             <ul class="nav flex-column dash-nav">
-
                                 <li class="nav-item">
-                                    <a class="nav-link active d-flex justify-content-between align-items-center text-small" aria-current="page" href="#">
-                                        Faq
+                                    <a class="nav-link active d-flex justify-content-between align-items-center text-small" aria-current="page" href="/dashboard/index-sitemap">
+                                        Index Sitemap
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active d-flex justify-content-between align-items-center text-small" aria-current="page" href="#">
+                                    <a class="nav-link active d-flex justify-content-between align-items-center text-small" aria-current="page" href="wa.me/923081074466">
                                         Support
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active d-flex justify-content-between align-items-center text-small" aria-current="page" href="#">
-                                        Contact
                                     </a>
                                 </li>
                             </ul>

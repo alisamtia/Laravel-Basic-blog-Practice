@@ -1,18 +1,24 @@
-@props(['name','SEMsg'=>"false"])
+@props(['name','SEMsg'=>"false",'meta_description'=>""])
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Free minimal portfolio web site template,minmal portfolio,porfolio,bootstrap template,html template,photography " />
-    <title>{{ $name }} - MarketSpot - Digital marketplace template.</title>
+    <meta name="description" content="{{ $meta_description }}" >
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content='{{ $name==="" ? "MarketSpot - Digital marketplace template" : $name." - MarketSpot" }}' >
+    <meta property="og:description" content="{{ $meta_description }}" >
+    
+    <title>{{ $name==="" ? "MarketSpot - Digital marketplace template" : $name." - MarketSpot" }}</title>
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,400,600,700,800,900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('assets/css/main.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/rtl.css') }}">
+
     <style>
         .alert-e {
         padding: 10px;

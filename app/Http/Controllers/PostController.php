@@ -23,7 +23,8 @@ class PostController extends Controller
             "posts"=> $user->posts()->latest()
             ->with(["category","author"])
             ->paginate(10),
-            "cPage"=>"Author / ".$user->username
+            "cPage"=>"Author / ".$user->username,
+            "cName"=>"Filtered By Author: ".ucwords($user->username)
         ]);
     }
 
@@ -32,7 +33,8 @@ class PostController extends Controller
             "posts"=> $category->posts()->latest()
             ->with(["category","author"])
             ->paginate(10),
-            "cPage"=>"Category / ".$category->name
+            "cPage"=>"Category / ".$category->name,
+            "cName"=>"Filtered By Category: ".ucwords($category->name)
         ]);
     }
 }

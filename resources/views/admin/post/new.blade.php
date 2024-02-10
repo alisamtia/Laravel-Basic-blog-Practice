@@ -10,6 +10,10 @@
                 <option {{ $category->id==old('category_id') ? 'selected' : '' }} value="{{$category->id}}">{{ucwords($category->name)}}</option>
             @endforeach
         </x-form.select>
+
+        <x-form.text name="meta_title" type="text" />
+        <x-form.textarea rows="5" name="meta_description" />
+
         <x-form.small-btn>Publish Post</x-form.small-btn>
     </form>
 </x-adminLayout>
