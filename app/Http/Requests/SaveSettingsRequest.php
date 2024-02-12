@@ -24,7 +24,9 @@ class SaveSettingsRequest extends FormRequest
         return [
             'title'=>'required|min:3|max:225',
             'tagline'=>'required|min:3|max:225',
-            'favicon'=>'image'
+            'description' => 'required|min:100|max:160',
+            'keywords' => 'required|min:10|max:160',
+            'favicon'=>'mimes:jpeg,jpg,gif,svg,png,ico'
         ];
     }
 }

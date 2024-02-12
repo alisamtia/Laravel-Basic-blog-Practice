@@ -1,4 +1,4 @@
-<x-layout name="{{$cName ?? ''}}" meta_description="{{ isset($cName) ? 'Here are all the Posts '.$cName : '' }}">
+<x-layout name="{{$cName ?? ''}}" meta_description="{{ isset($cName) ? 'Here are all the Posts '.$cName : config('site.siteDescription') }}" meta_keywords="{{config('site.siteKeywords')}}">
 <main role="main">
         <div class="wrapper mt-5">
 

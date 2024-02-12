@@ -12,6 +12,7 @@ use App\Models\Category;
 use App\Models\User;
 use App\Http\Requests\SaveSettingsRequest;
 use File;
+use Storage;
 
 class AdminController extends Controller
 {
@@ -46,18 +47,19 @@ class AdminController extends Controller
 
     public function save_settings(SaveSettingsRequest $data){
         $data=$data->validated();
-        $configFile = config_path('app.php');
+        $configFile = config_path('site.php');
 
         $config = File::getRequire($configFile);
 
         $config['siteTitle'] = $data['title'];
         $config['siteTagline'] = $data['tagline'];
-        dd(request()->file('favicon')->store('ali'));
+        $config['siteDescription'] = $data['description'];
+        $config['siteKeywords'] = $data['keywords'];
 
-        // if(request()->file('favicon')){
-        //     unlink(config('siteFavicon'));
-        //     $config['siteFavicon'] = request()->file('favicon')->store();
-        // }
+        if(request()->file('favicon')){
+            File::delete(config('site.siteFavicon'));
+            $config['siteFavicon'] = Storage::url(request()->file('favicon')->store());
+        }
 
         File::put($configFile, '<?php return ' . var_export($config, true) . ';');
 

@@ -9,10 +9,10 @@
     <meta name="description" content="{{ $meta_description }}" >
     <meta name="keywords" content="{{ $meta_keywords }}">
     <meta name="robots" content="index, follow">
-    <meta property="og:title" content='{{ $title=$name==="" ? config("app.siteTitle") ." - ". config("app.siteTagline") : $name." - ".config("app.title") }}' >
+    <meta property="og:title" content='{{ $title=$name==="" ? config("site.siteTitle") ." - ". config("site.siteTagline") : $name." - ".config("site.siteTitle") }}' >
     <meta property="og:description" content="{{ $meta_description }}" >
     <link rel="canonical" href="{{url()->current()}}" />
-    <link rel="icon" type="image/x-icon" href="{{ config('app.siteFavicon') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset(config('site.siteFavicon')) }}">
     
     <title>{{ $title }}</title>
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,400,600,700,800,900&display=swap" rel="stylesheet">
@@ -101,7 +101,7 @@ setTimeout(function() {
     <header class="nav-wrap bg-dark fixed-top">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-dark px-lg-0">
-                <a class="navbar-brand mr-3 swap-link" href="{{route('index')}}">{{config('app.siteTitle')}}</a>
+                <a class="navbar-brand mr-3 swap-link" href="{{route('index')}}">{{config('site.siteTitle')}}</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -146,7 +146,7 @@ setTimeout(function() {
                 <div class="row pb-3">
                     <aside class="col-md-2">
                         <div class="footer-logo">
-                            <h4 class="text-white font-weight-bold">{{config('app.siteTitle')}}</h4>
+                            <h4 class="text-white font-weight-bold">{{config('site.siteTitle')}}</h4>
                         </div>
                     </aside>
                     <aside class="col-md">
@@ -197,7 +197,7 @@ setTimeout(function() {
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <span class="pr-2">© {{ now()->format('Y') }} {{config('app.siteTitle')}}</span>
+                        <span class="pr-2">© {{ now()->format('Y') }} {{config('site.siteTitle')}}</span>
                     </div>
                     <div class="col-md-6 text-md-right">
                         <a href="#" class="mr-2"><img src="{{asset('assets/img/payment/footer-visa.svg')}}" width="42"></a>
