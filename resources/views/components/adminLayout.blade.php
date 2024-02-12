@@ -77,6 +77,11 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a class="nav-link active d-flex justify-content-between align-items-center" aria-current="page" href="{{route('settings')}}">
+                                        <div style="{{ Route::is('settings') ? 'color:#319795' : ''}}"><i class="las la-cog"></i>Settings</div>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link active d-flex justify-content-between align-items-center text-danger" aria-current="page" href="#">
                                         <form action="{{ route('logout') }}" method="POST">@method("DELETE") @csrf<div class="flex"><button type="submit" style="background:none;border:none;padding:0px;margin:0px;font-weight:700;color:red;"><i class="las la-sign-out-alt"></i>Logout</button></div></form>
                                     </a>
@@ -100,7 +105,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active d-flex justify-content-between align-items-center text-small" aria-current="page" href="wa.me/923081074466">
+                                    <a class="nav-link active d-flex justify-content-between align-items-center text-small" aria-current="page" href="https://wa.me/923081074466">
                                         Support
                                     </a>
                                 </li>

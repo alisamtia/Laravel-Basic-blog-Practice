@@ -10,11 +10,17 @@ use Spatie\Sitemap\Tags\Url;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\User;
+use App\Http\Requests\SaveSettingsRequest;
+use File;
 
 class AdminController extends Controller
 {
     public function index(){
         return view("admin.index");
+    }
+
+    public function settings(){
+        return view("admin.settings");
     }
 
     public function indexSitemap(){
@@ -36,5 +42,25 @@ class AdminController extends Controller
         $sitemap->writeTofile(public_path('sitemap.xml'));
 
         return back()->with('success','Sitemap Indexed Successfully!');
+    }
+
+    public function save_settings(SaveSettingsRequest $data){
+        $data=$data->validated();
+        $configFile = config_path('app.php');
+
+        $config = File::getRequire($configFile);
+
+        $config['siteTitle'] = $data['title'];
+        $config['siteTagline'] = $data['tagline'];
+        dd(request()->file('favicon')->store('ali'));
+
+        // if(request()->file('favicon')){
+        //     unlink(config('siteFavicon'));
+        //     $config['siteFavicon'] = request()->file('favicon')->store();
+        // }
+
+        File::put($configFile, '<?php return ' . var_export($config, true) . ';');
+
+        return back()->with("success","Settings Changed Successfully!");
     }
 }

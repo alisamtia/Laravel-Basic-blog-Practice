@@ -27,6 +27,8 @@ Route::middleware(['guest'])->group(function(){
 });
 
 Route::prefix("dashboard")->middleware("AuthOrAdmin")->group(function () {
+    Route::get('/settings', [AdminController::class,'settings'])->name("settings");
+    Route::post('/save-settings', [AdminController::class,'save_settings'])->name("save-settings");
     Route::get('/', [AdminController::class,'index'])->name("dashboard");
 
     Route::resource('categories',CategoriesController::class)->parameters([
